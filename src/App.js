@@ -1,18 +1,26 @@
+import React from "react";
+
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
+
 import { expenses } from "./shared/consts/expenses";
 
-// OLDER VERSIONS OF REACT WITHOUT JSX, that happens under the hood when using JSX 
-// import React from "react";
 
 const App = () => {
+  // OLDER VERSIONS OF REACT WITHOUT JSX, that happens under the hood when using JSX 
   // return React.createElement('div',
   //   {},
   //   React.createElement('h2', {}, "Let's get started!"),
   //   React.createElement(Expenses, { items: expenses }));
 
+  const addExpenseHandler = expense => {
+    console.log('In App.js');
+    console.log(expense);
+  }
+
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense onAddExpenseData={addExpenseHandler} />
       <Expenses items={expenses} />      
     </div>
   );
