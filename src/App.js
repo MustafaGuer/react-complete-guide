@@ -5,9 +5,8 @@ import NewExpense from "./components/NewExpense/NewExpense";
 
 import { DUMMY_EXPENSES } from "./shared/consts/DUMMY_EXPENSES";
 
-
 const App = () => {
-  // OLDER VERSIONS OF REACT WITHOUT JSX, that happens under the hood when using JSX 
+  // OLDER VERSIONS OF REACT WITHOUT JSX, that happens under the hood when using JSX
   // return React.createElement('div',
   //   {},
   //   React.createElement('h2', {}, "Let's get started!"),
@@ -15,9 +14,9 @@ const App = () => {
 
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
-  const addExpenseHandler = expense => {
-    setExpenses(prevExpenses => [expense, ...prevExpenses]);
-  }
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => [expense, ...prevExpenses]);
+  };
 
   return (
     <div>
@@ -25,6 +24,6 @@ const App = () => {
       <Expenses items={expenses} />
     </div>
   );
-}
+};
 
 export default App;
