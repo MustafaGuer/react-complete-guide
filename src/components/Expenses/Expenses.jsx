@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
-import ExpenseItem from "./ExpenseItem";
+// import ExpenseItem from "./ExpenseItem";
+import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
+
 import Card from "../UI/Card";
 
 import "./Expenses.css";
-import ExpensesFilter from "./ExpensesFilter";
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2023");
@@ -17,14 +19,34 @@ const Expenses = (props) => {
     (expense) => expense.date.getFullYear().toString() === filteredYear
   );
 
+  // CLEAN WAY IF CONDITIONAL JSX CODE IN SAME COMPONENT 
+  // let expensesContent = <p>No expenses found.</p>;
+
+  // if (filteredExpenses.length > 0) {
+  //   expensesContent = filteredExpenses.map((item) => (
+  //     <ExpenseItem
+  //       key={item.id}
+  //       title={item.title}
+  //       amount={item.amount}
+  //       date={item.date}
+  //     />
+  //   ));
+  // }
+
   return (
-    <div>
+    <li>    
       <Card className="expenses">
         <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
-        {/* {props.items.map(item => <ExpenseItem key={item.id} title={item.title} amount={item.amount} date={item.date} />)} >>> UNFILTERED ARRAY <<< */}
+        <ExpensesList items={filteredExpenses} />
+
+        {/* THE CLEANEST WAY TO SHOW CONDITIONAL IN SAME COMPONENT (Variables up there) */}
+        {/* {expensesContent} */}
+
+        {/* UNFILTERED ARRAY (FOR LOOP IN JSX) */}
+        {/* {props.items.map(item => <ExpenseItem key={item.id} title={item.title} amount={item.amount} date={item.date} />)} */}
 
         {/* FILTER AND MAP ARRAY IN THE JSX CODE */}
         {/* {props.items.filter(item => item.date.getFullYear().toString() === filteredYear).map(filteredItem => (
@@ -38,7 +60,7 @@ const Expenses = (props) => {
                     filteredExpenses.map(item => <ExpenseItem key={item.id} title={item.title} amount={item.amount} date={item.date} />)} */}
 
         {/* SHOW CONDITIONAL IN SHORTER WAY */}
-        {filteredExpenses.length === 0 && <p>No expenses found.</p>}
+        {/* {filteredExpenses.length === 0 && <p>No expenses found.</p>}
         {filteredExpenses.map((item) => (
           <ExpenseItem
             key={item.id}
@@ -46,9 +68,9 @@ const Expenses = (props) => {
             amount={item.amount}
             date={item.date}
           />
-        ))}
+        ))} */}
       </Card>
-    </div>
+    </li>
   );
 };
 
