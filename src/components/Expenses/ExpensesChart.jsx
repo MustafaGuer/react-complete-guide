@@ -4,7 +4,6 @@ import Chart from "../Chart/Chart";
 import { chartDataPoints } from "../../shared/consts/chartDataPoints";
 
 const ExpensesChart = (props) => {
-    console.log(props.expenses);
   for (const expense of props.expenses) {
     const expenseMonth = expense.date.getMonth();
     chartDataPoints[expenseMonth].value += expense.amount;
