@@ -7,6 +7,7 @@ import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 
 import "./Expenses.css";
+import ExpensesChart from "./ExpensesChart";
 
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2023");
@@ -15,11 +16,11 @@ const Expenses = (props) => {
     setFilteredYear(selectedYear);
   };
 
-  const filteredExpenses = props.items.filter(
-    (expense) => expense.date.getFullYear().toString() === filteredYear
-  );
+  const filteredExpenses = props.items.filter((expense) => {
+    return expense.date.getFullYear().toString() === filteredYear;
+  });
 
-  // CLEAN WAY IF CONDITIONAL JSX CODE IN SAME COMPONENT 
+  // CLEAN WAY IF CONDITIONAL JSX CODE IN SAME COMPONENT
   // let expensesContent = <p>No expenses found.</p>;
 
   // if (filteredExpenses.length > 0) {
@@ -34,12 +35,13 @@ const Expenses = (props) => {
   // }
 
   return (
-    <li>    
+    <li>
       <Card className="expenses">
         <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
         />
+        <ExpensesChart expenses={filteredExpenses} />
         <ExpensesList items={filteredExpenses} />
 
         {/* THE CLEANEST WAY TO SHOW CONDITIONAL IN SAME COMPONENT (Variables up there) */}
